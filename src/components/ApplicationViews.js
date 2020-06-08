@@ -14,7 +14,7 @@ const ApplicationViews = () => {
         path="/"
         render={(props) => {
           if (isAutheticated()) {
-            return <ProductList />;
+            return <ProductList {...props} />;
           } else {
             return <Redirect to="/login" />;
           }

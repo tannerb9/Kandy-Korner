@@ -16,8 +16,8 @@ const Login = (props) => {
         <fieldset>
           <div className="formgrid">
             <input
-              type="text"
               type="email"
+              id="email"
               onChange={(evt) =>
                 handleFieldChange(evt, credentials, setCredentials)
               }
