@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { handleFieldChange } from "../../helpers/Helpers";
 
-const Login = () => {
+const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
-  const handleLogin = (props) => {
+  const handleLogin = (evt) => {
     evt.preventDefault();
     sessionStorage.setItem("credentials", JSON.stringify(credentials));
     props.history.push("/");

@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/KandyKounter";
+import KandyKounter from "./components/KandyKounter";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <KandyKounter />
   </React.StrictMode>,
   document.getElementById("root")
 );
