@@ -5,6 +5,7 @@ import ProductList from "./products/ProductList";
 import ProductDetail from "./products/ProductDetail";
 import EmployeeList from "./employees/EmployeeList";
 import EmployeeDetail from "./employees/EmployeeDetail";
+import LocationList from "./locations/LocationList";
 
 const ApplicationViews = () => {
   const isAutheticated = () => sessionStorage.getItem("credentials") !== null;
@@ -51,6 +52,17 @@ const ApplicationViews = () => {
         render={(props) => {
           if (isAutheticated()) {
             return <EmployeeDetail {...props} />;
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/locations"
+        render={(props) => {
+          if (isAutheticated()) {
+            return <LocationList {...props} />;
           } else {
             return <Redirect to="/login" />;
           }
