@@ -1,6 +1,7 @@
 import { Route, Redirect } from "react-router-dom";
 import React from "react";
 import Login from "./auth/Login";
+import ProductList from "./products/ProductList";
 
 const ApplicationViews = () => {
   const isAutheticated = () => sessionStorage.getItem("credentials") !== null;
@@ -13,7 +14,7 @@ const ApplicationViews = () => {
         path="/"
         render={(props) => {
           if (isAutheticated()) {
-            return <ProductList />;
+            return <ProductList {...props} />;
           } else {
             return <Redirect to="/login" />;
           }

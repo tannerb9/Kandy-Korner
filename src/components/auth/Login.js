@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { handleFieldChange } from "../../helpers/Helpers";
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+const Login = (props) => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
 
-  const handleLogin = (props) => {
+  const handleLogin = (evt) => {
     evt.preventDefault();
     sessionStorage.setItem("credentials", JSON.stringify(credentials));
     props.history.push("/");
@@ -15,17 +18,19 @@ const Login = () => {
       <form onSubmit={handleLogin}>
         <fieldset>
           <div className="formgrid">
+            <label htmlFor="inputUsername">Username </label>
             <input
               type="text"
-              type="email"
+              id="username"
               onChange={(evt) =>
                 handleFieldChange(evt, credentials, setCredentials)
               }
               required
-              placeholder="E-mail address"
+              placeholder="Username"
               autoFocus=""
             />
-            <label htmlFor="inputEmail">Email address</label>
+            <br />
+            <label htmlFor="inputPassword">Password </label>
             <input
               type="password"
               onChange={(evt) =>
@@ -35,7 +40,6 @@ const Login = () => {
               placeholder="Password"
               required
             />
-            <label htmlFor="inputPassword">Password</label>
           </div>
           <button type="submit">Sign in</button>
         </fieldset>
