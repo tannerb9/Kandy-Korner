@@ -21,17 +21,6 @@ const ApplicationViews = () => {
           }
         }}
       />
-      <Route
-        exact
-        path="/"
-        render={(props) => {
-          if (isAutheticated()) {
-            return <ProductList {...props} />;
-          } else {
-            return <Redirect to="/login" />;
-          }
-        }}
-      />
     </>
   );
 };
