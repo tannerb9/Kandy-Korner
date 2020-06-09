@@ -11,9 +11,10 @@ const ProductDetail = (props) => {
 
   useEffect(() => {
     DataManager.getProductType(props.match.params.productId).then((product) => {
-      setProductType(product.productType.name);
+      setProductType(product.productType);
     });
-  });
+  }, []);
+
   useEffect(() => {
     DataManager.getWithLocations("products", props.match.params.productId).then(
       (product) => {
@@ -22,7 +23,7 @@ const ProductDetail = (props) => {
           price: product.price,
           productTypeId: product.productTypeId,
         });
-        setLocations();
+        setLocations({ location: product.locationId });
         setIsLoading(false);
       }
     );
@@ -43,7 +44,7 @@ const ProductDetail = (props) => {
       <div className="card">
         <div className="card-content">
           <h3>{product.name}</h3>
-          <h3>Type: {product.productTypeId}</h3>
+          <h3>Type: {productType.name}</h3>
           <h3>Price: ${product.price}/lb</h3>
           <h3>Sold at:</h3>
           <div className="locationsContainer"></div>
