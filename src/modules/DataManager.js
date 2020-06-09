@@ -7,9 +7,14 @@ export default {
   getAll(tab) {
     return fetch(`${remoteURL}/${tab}`).then((data) => data.json());
   },
-  // getWithLocations(tab, id) {
-  //   return fetch(
-  //     `${remoteURL}/${tab}/${id}?_embed=productLocations`
-  //   ).then((data) => data.json());
-  // },
+  getWithLocations(tab, id) {
+    return fetch(
+      `${remoteURL}/${tab}/${id}?_embed=productLocations`
+    ).then((data) => data.json());
+  },
+  getProductType(id) {
+    return fetch(
+      `${remoteURL}/products/${id}?_expand=productType`
+    ).then((data) => data.json());
+  },
 };

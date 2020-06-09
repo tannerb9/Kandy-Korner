@@ -4,18 +4,27 @@ import DataManager from "../../modules/DataManager";
 
 const ProductDetail = (props) => {
   const [product, setProduct] = useState({});
-  // const [locations, setLocations] = useState([]);
+  const [productType, setProductType] = useState({});
+  const [locations, setLocations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    DataManager.get("products", props.productId).then((product) => {
-      setProduct({
-        name: product.name,
-        breed: product.price,
-        pic: product.productType,
-      });
-      setIsLoading(false);
+    DataManager.getProductType(props.match.params.productId).then((product) => {
+      setProductType(product.productType.name);
     });
+  });
+  useEffect(() => {
+    DataManager.getWithLocations("products", props.match.params.productId).then(
+      (product) => {
+        setProduct({
+          name: product.name,
+          price: product.price,
+          productTypeId: product.productTypeId,
+        });
+        setLocations(product.locations);
+        setIsLoading(false);
+      }
+    );
   }, []);
 
   // useEffect(() => {
@@ -32,7 +41,7 @@ const ProductDetail = (props) => {
       <div className="card">
         <div className="card-content">
           <h3>{product.name}</h3>
-          <h3>{product.productType}</h3>
+          <h3>{product.productTypeId}</h3>
           <h3>${product.price}/lb</h3>
           <h3>Sold at:</h3>
           <div className="locationsContainer"></div>
