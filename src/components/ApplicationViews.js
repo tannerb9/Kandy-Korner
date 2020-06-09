@@ -3,7 +3,8 @@ import React from "react";
 import Login from "./auth/Login";
 import ProductList from "./products/ProductList";
 import ProductDetail from "./products/ProductDetail";
-import ProductCard from "./products/ProductCard";
+import EmployeeList from "./employees/EmployeeList";
+import EmployeeDetail from "./employees/EmployeeDetail";
 
 const ApplicationViews = () => {
   const isAutheticated = () => sessionStorage.getItem("credentials") !== null;
@@ -28,6 +29,28 @@ const ApplicationViews = () => {
         render={(props) => {
           if (isAutheticated()) {
             return <ProductDetail {...props} />;
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/employees"
+        render={(props) => {
+          if (isAutheticated()) {
+            return <EmployeeList {...props} />;
+          } else {
+            return <Redirect to="/login" />;
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/employees/:employeeId(\d+)/details"
+        render={(props) => {
+          if (isAutheticated()) {
+            return <EmployeeDetail {...props} />;
           } else {
             return <Redirect to="/login" />;
           }

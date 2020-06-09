@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataManager from "../../modules/DataManager";
+import NavBar from "../home/nav/NavBar";
 // import ProductCard from "./ProductCard";
 
 const ProductDetail = (props) => {
@@ -21,7 +22,7 @@ const ProductDetail = (props) => {
           price: product.price,
           productTypeId: product.productTypeId,
         });
-        setLocations(product.locations);
+        setLocations();
         setIsLoading(false);
       }
     );
@@ -38,11 +39,12 @@ const ProductDetail = (props) => {
 
   return (
     <>
+      <NavBar />
       <div className="card">
         <div className="card-content">
           <h3>{product.name}</h3>
-          <h3>{product.productTypeId}</h3>
-          <h3>${product.price}/lb</h3>
+          <h3>Type: {product.productTypeId}</h3>
+          <h3>Price: ${product.price}/lb</h3>
           <h3>Sold at:</h3>
           <div className="locationsContainer"></div>
         </div>
